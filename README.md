@@ -5,7 +5,7 @@
 Sparsepp is derived from Google's excellent [sparsehash](https://github.com/sparsehash/sparsehash) implementation. It aims to achieve the following objectives:
 
 - A drop-in alternative for unordered_map and unordered_set.
-- **Extremely low memory usage** (typically about one byte overhead per entry), and most important very small memory overhead when resizing.
+- **Extremely low memory usage** (typically about one byte overhead per entry), and most importantly **very small memory overhead when resizing**.
 - **Very efficient**, typically faster than your compiler's unordered map/set or Boost's.
 - **C++11 support** (if supported by compiler).
 - ~~Single header~~ not anymore
@@ -101,6 +101,8 @@ These classes provide the same interface as std::unordered_map and std::unordere
    As for std::unordered_map, the order of the elements that are not erased is preserved.
 
 - Since items are not grouped into buckets, Bucket APIs have been adapted: `max_bucket_count` is equivalent to `max_size`, and `bucket_count` returns the sparsetable size, which is normally at least twice the number of items inserted into the hash_map.
+
+- Values inserted into sparsepp have to either be `copyable and movable`, or just `movable`. See example movable.cc.
 
 ## Memory allocator on Windows (when building with Visual Studio)
 
